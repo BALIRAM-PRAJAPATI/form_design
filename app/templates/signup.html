@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+ {% block styletext %}
+    .er{
+      color:red;
+    } 
+{% endblock styletext %}
+{% block maincontent %}
+  <form action="{% url 'signup' %}" method="post" novalidate>
+ {% csrf_token %}
+  {% if form.non_field_errors %}
+   {% for error in form.non_field_errors %}
+    <p style = "color:red;" class="er">{{error}}</p>
+   {% endfor %}
+  {% endif %}
+ {% for fm in form %}
+  {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+ {% endfor %}
+  <input type="submit" value="Submit">
+  </form>
+  {% if messages %}
+  {% for message in messages %}
+    <small style = "color:red;" {% if message.tags %} class="{{message.tags}}" {% endif %}> {{message}} </small>
+  {% endfor %}
+  {% endif %}
+  <span>if you have a account then</span><a href="{% url 'login' %}">Login</a>
+{% endblock maincontent %}

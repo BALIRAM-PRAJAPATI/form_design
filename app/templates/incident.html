@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block maincontent %}
+ <h2>New Master Incident</h2>
+ <h4>initial reporting</h4>
+ <form action="{% url 'incident_report' %}" method = "post">
+   {% csrf_token %}
+   {{form.as_p}}
+   <p>date of incident:</p>
+   <input type="date" name = "date">
+   <br><br>
+   <p>time of incident:</p>
+   <input type="time" name = "time">
+   <br>
+   <!--incident location start-->
+   <p>incident location</p>
+   <div style = "position:relative;width:295px;height:80px;">
+     <textarea name="incident_location" cols="30" rows="3" id = "incident_location"></textarea>
+      <div class="spinner-border text-danger" id = "incident_spinner" role="status" style = "position:absolute;bottom:4px;right:4px;display:none;">
+          <span class="sr-only">Loading...</span>
+      </div>
+   </div>
+   <!--end incident location-->
+   <br>
+   <br>
+  <p class = "mt-5">suspected cause</p>
+   <br>
+   <!--start suspected cause-->
+   <div style = "position:relative;width:295px;height:80px;">
+    <textarea name="suspected_cause"  id = "suspected_cause" cols="30" rows="3"></textarea><br>
+      <div class="spinner-border text-danger" id = "suspected_spinner" role="status" style = "position:absolute;bottom:4px;right:4px;display:none">
+          <span class="sr-only">Loading...</span>
+      </div>
+   </div>
+   <!--end suspected cause-->
+   <br>
+   <p>immediate action taken</p>
+   <div style = "position:relative;width:295px;height:80px;">
+   <textarea name="immediateaction_taken" cols="30" rows="3" id = "immediateaction_taken"></textarea>
+       <div class="spinner-border text-danger" id = "imm_spinner" role="status" style = "position:absolute;bottom:4px;right:4px;display:none">
+          <span class="sr-only">Loading...</span>
+      </div>
+   </div>
+   <br>
+   <p>reported by:</p>
+   <input type="text" value = {{name}} name = "reported_by">
+   <br>
+   <br>
+   
+    <div class = "my-4"  style = "float:right">
+     <input type="submit" value = "save" class = "btn btn-warning">
+     <input type="button" value = "save for later" class = "btn btn-info">
+     <input type="button" value = "cancel" class = "btn btn-success">
+    </div>
+   <br>   
+ </form>
+ {% if form %}
+    {% if messages %}
+  {% for message in messages %}
+    <small {% if message.tags %} class="{{message.tags}}" {% endif %}> {{message}} </small>
+  {% endfor %}
+  {% endif %}
+ {% endif %}
+{% endblock maincontent %}
+{% block scriptcontent %}
+    <script>
+        
+        var key_pressed = document.getElementById('incident_location');
+  
+        key_pressed.addEventListener("keydown", onKeyDown);
+       
+        key_pressed.addEventListener("keyup", onKeyUp);
+  
+        function onKeyDown(event) {
+            document.getElementById("incident_spinner").style.display = 'block'; 
+                          
+        }
+        
+        function onKeyUp(event) {
+             document.getElementById("incident_spinner").style.display = 'none';
+        }
+
+        //suspected cause coding
+
+         
+    </script>
+
+    <script>
+      var key_pressed_s = document.getElementById('suspected_cause');
+  
+        key_pressed_s.addEventListener("keydown", onKeyDown);
+       
+        key_pressed_s.addEventListener("keyup", onKeyUp);
+  
+        function onKeyDown(event) {
+            document.getElementById("suspected_spinner").style.display = 'block'; 
+                         
+        }
+        
+        function onKeyUp(event) {
+             document.getElementById("suspected_spinner").style.display = 'none';
+        }
+    </script>
+
+    <script>
+      var key_pressed_i = document.getElementById('immediateaction_taken');
+  
+        key_pressed_i.addEventListener("keydown", onKeyDown);
+       
+        key_pressed_i.addEventListener("keyup", onKeyUp);
+  
+        function onKeyDown(event) {
+            document.getElementById("imm_spinner").style.display = 'block'; 
+                         
+        }
+        
+        function onKeyUp(event) {
+             document.getElementById("imm_spinner").style.display = 'none';
+        }
+    </script>
+{% endblock scriptcontent %}

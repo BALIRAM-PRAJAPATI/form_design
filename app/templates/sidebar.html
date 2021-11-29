@@ -1,0 +1,75 @@
+<aside class="left-sidebar" data-sidebarbg="skin6">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar" data-sidebarbg="skin6">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="index.html"
+                                aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
+                                    class="hide-menu">Dashboard</span></a>
+                        </li>
+                       
+
+                        
+                        <li class="nav-small-cap"><span class="hide-menu">Components</span></li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                                    class="hide-menu">Incidents </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                {% if name %}
+                                  <li class="sidebar-item"><a href="{% url 'incident_report' %}" class="sidebar-link sidebar-link"><span
+                                            class="hide-menu"> Report an Incident
+                                        </span></a>
+                                </li>
+                               
+                                {% endif %}
+                                <li class="sidebar-item"><a href="#" class="sidebar-link sidebar-link"><span
+                                            class="hide-menu"> Saved Incidents
+                                        </span></a>
+                                </li>
+                                <li class="sidebar-item"><a href="#" class="sidebar-link sidebar-link"><span
+                                            class="hide-menu"> Sent Incidents
+                                            
+                                        </span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        
+                      
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="ui-cards.html"
+                                aria-expanded="false"><i data-feather="sidebar" class="feather-icon"></i><span
+                                    class="hide-menu">Others
+                                </span></a>
+                        </li>
+                        <li class="list-divider"></li>
+                        <li class="nav-small-cap"><span class="hide-menu">Authentication</span></li>
+
+                        {% if not name %}
+                           <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{% url 'login' %}"
+                                aria-expanded="false"><i data-feather="lock" class="feather-icon"></i><span
+                                    class="hide-menu">Login
+                                </span></a>
+                        </li>
+                        {% endif %}
+                        
+                          <li class="sidebar-item active"> <a class="sidebar-link sidebar-link"
+                                href="{% url 'signup' %}" aria-expanded="false"><i data-feather="lock"
+                                    class="feather-icon"></i><span class="hide-menu">Register
+                                </span></a>
+                        </li>
+                     
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link"
+                                href="{% url 'logout' %}" aria-expanded="false"><i data-feather="lock"
+                                    class="feather-icon"></i><span class="hide-menu">Logout
+                                </span></a>
+                        </li>                  
+
+
+                        
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>

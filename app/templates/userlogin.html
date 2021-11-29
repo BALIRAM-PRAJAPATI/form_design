@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block styletext %}
+  .er{
+    color:red
+  }
+{% endblock styletext %}
+{% block maincontent %}
+   <h2>Welcome Login</h2>
+  <form action="{% url 'login' %}" method="post" novalidate>
+  {% csrf_token %}
+  {% if form.non_field_errors %}
+   {% for error in form.non_field_errors %}
+    <p class="er">{{error}}</p>
+   {% endfor %}
+  {% endif %}
+  {% for fm in form %}
+   {{fm.label_tag}}
+    {{fm}}
+     {{fm.errors|striptags}} <br><br>
+  {% endfor %}
+  <input type="submit" value="Login">
+ </form>
+  <span>if you have no account then</span><a href="{% url 'signup' %}">Signup</a>
+{% endblock maincontent %}
